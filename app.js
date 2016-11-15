@@ -12,31 +12,24 @@ io.sockets.on('connection', function (socket) {
 socket.on('email', function (msg) {
 console.log('New Chat Message ', msg)
 	// email gonder, sonra callbackteki msg yerine state yolla success veya fail
-	var email   = require("/home/baris_dnmz93/node_modules/emailjs/email");
-	var server  = email.server.connect({
- 		user: "m.onur.cevik@hotmail.com", 
-  		password: "o147852369o=Onur", 
-   		host: "smtp.live.com", 
-  		ssl: true,
-		port: 587,
-		tls: {
-        	ciphers:'SSLv3'
-    		}
+	var transport = nodemailer.createTransport("SMTP", {
+    	service: "hotmail",
+    	auth: {
+        	user: "m.onur.cevik@hotmail.com",
+        	pass: "o147852369o=Onur"
+    	}
 	});
-
-// send the message and get a callback with an error or details of the message that was sent
-	server.send({
-   		text:    "i hope this works", 
-   		from:    "m.onur.cevik@hotmail.com", 
-   		to:      "m.onur.cevik@hotmail.com",
-   		subject: "testing emailjs"
-	}, function(err, message) {
-		if (err) {
-			socket.emit('callback', 'fail'); 
-		} else {
-			socket.emit('callback', 'success');
-		}
-		console.log(err || message); 
+	var mailOptions = {
+        from: "m.onur.cevik@hotmail.com", // sender address
+        to: "beforeidiearge@gmail.com", // list of receivers
+        subject: "asdsadsasa", // Subject line
+        text: "zazaza", // plaintext body
+    	}
+	transport.sendMail(mailOptions, function(error, info){
+    	if(error){
+        	return console.log(error);
+    	}
+    	console.log('Message sent: ' + info.response);
 	});
 });
 
