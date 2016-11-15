@@ -28,9 +28,9 @@ console.log('New Chat Message ', msg)
    		subject: "testing emailjs"
 	}, function(err, message) {
 		if (err) {
-			io.sockets.emit('callback', 'fail'); 
+			socket.emit('callback', 'fail'); 
 		} else {
-			io.sockets.emit('callback', 'success');
+			socket.emit('callback', 'success');
 		}
 		console.log(err || message); 
 	});
@@ -38,15 +38,5 @@ console.log('New Chat Message ', msg)
 
 socket.on('disconnect', function () {
 io.sockets.emit('User Disconnected');
-});
-
-socket.on('newuser', function (name) {
-console.log(name,' Is Now Connected!');
-io.sockets.emit('txt',name + ' is now online');
-});
-
-socket.on('exit', function (name) {
-console.log(name,' Has Been Disconnected!');
-io.sockets.emit('txt',name + ' is now offline');
 });
 });
