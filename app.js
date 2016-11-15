@@ -15,24 +15,47 @@ console.log('New Chat Message ', msg)
 	// email gonder, sonra callbackteki msg yerine state yolla success veya fail
 	var nodemailer = require('nodemailer');
 
-// create reusable transporter object using the default SMTP transport
-var transporter = nodemailer.createTransport('smtps://beforeidiearge%40gmail.com:beforeidie*arge@smtp.gmail.com');
+var transport = nodemailer.createTransport("SMTP", {
+        service: 'Gmail',
+        auth: {
+            user: "beforeidiearge@gmail.com",
+            pass: "beforeidie*arge"
+        }
+    });
 
-// setup e-mail data with unicode symbols
-var mailOptions = {
-    from: 'beforeidiearge@gmail.com', // sender address
-    to: 'm.onur.cevik@hotmail.com', // list of receivers
-    subject: 'Hello', // Subject line
-    text: 'Hello world', // plaintext body
-    html: 'Hello world' // html body
+console.log('SMTP Configured');
+
+// Message object
+var message = {
+
+    // sender info
+    from: 'beforeidiearge@gmail.com',
+
+    // Comma separated list of recipients
+    to: 'm.onur.cevik@hotmail.com',
+
+    // Subject of the message
+    subject: 'Nodemailer is unicode friendly ✔', 
+
+    // plaintext body
+    text: 'Hello to myself!',
+
+    // HTML body
+    html:'<p><b>Hello</b> to myself <img src="cid:note@node"/></p>'+
+         '<p>Here\'s a nyan cat for you as an embedded attachment:<br/></p>'
 };
 
-// send mail with defined transport object
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        return console.log(error);
-    }
-    console.log('Message sent: ' + info.response);
+console.log('Sending Mail');
+transport.sendMail(message, function(error){
+  if(error){
+      console.log('Error occured');
+      console.log(error.message);
+      return;
+  }
+  console.log('Message sent successfully!');
+
+  // if you don't want to use this transport object anymore, uncomment following line
+  //transport.close(); // close the connection pool
 });
 });
 
