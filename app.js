@@ -14,16 +14,16 @@ console.log('New Chat Message ', msg)
 	// email gonder, sonra callbackteki msg yerine state yolla success veya fail
 	var email   = require("/home/baris_dnmz93/node_modules/emailjs/email");
 	var server  = email.server.connect({
- 		user: "m.onur.cevik", 
-  		password: "o147852369o=Onur", 
-   		host: "smtp-mail.hotmail.com", 
+ 		user: "beforeidiearge", 
+  		password: "beforeidie*arge", 
+   		host: "smtp.gmail.com", 
   		ssl: true
 	});
 
 // send the message and get a callback with an error or details of the message that was sent
 	server.send({
    		text:    "i hope this works", 
-   		from:    "m.onur.cevik@hotmail.com", 
+   		from:    "beforeidiearge@gmail.com", 
    		to:      "m.onur.cevik@hotmail.com",
    		subject: "testing emailjs"
 	}, function(err, message) {
