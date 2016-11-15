@@ -12,6 +12,7 @@ io.sockets.on('connection', function (socket) {
 socket.on('email', function (msg) {
 console.log('New Chat Message ', msg)
 	// email gonder, sonra callbackteki msg yerine state yolla success veya fail
+	var nodemailer = require('nodemailer');
 	var transport = nodemailer.createTransport("SMTP", {
     	service: "hotmail",
     	auth: {
