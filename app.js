@@ -14,49 +14,37 @@ socket.on('email', function (msg) {
 console.log('New Chat Message ', msg)
 	// email gonder, sonra callbackteki msg yerine state yolla success veya fail
 	var nodemailer = require('nodemailer');
+	var smtpTransport = require('nodemailer-smtp-transport');
 
-var transport = nodemailer.createTransport("SMTP", {
-        service: 'Gmail',
-        auth: {
-            user: "beforeidiearge@gmail.com",
-            pass: "beforeidie*arge"
-        }
-    });
+var options = {
+    service: 'gmail',
+    auth: {
+        user: 'beforeidiearge@gmail.com',
+        pass: 'beforeidie*arge'
+    }
+  };
+  var transporter = nodemailer.createTransport(smtpTransport(options))
 
-console.log('SMTP Configured');
 
-// Message object
-var message = {
-
-    // sender info
-    from: 'beforeidiearge@gmail.com',
-
-    // Comma separated list of recipients
-    to: 'm.onur.cevik@hotmail.com',
-
-    // Subject of the message
-    subject: 'Nodemailer is unicode friendly ✔', 
-
-    // plaintext body
-    text: 'Hello to myself!',
-
-    // HTML body
-    html:'<p><b>Hello</b> to myself <img src="cid:note@node"/></p>'+
-         '<p>Here\'s a nyan cat for you as an embedded attachment:<br/></p>'
-};
-
-console.log('Sending Mail');
-transport.sendMail(message, function(error){
-  if(error){
-      console.log('Error occured');
-      console.log(error.message);
-      return;
+  // setup e-mail data with unicode symbols
+  var mailOptions = {
+    from: 'beforeidiearge@gmail.com', // sender address
+    to: 'm.onur.cevik@hotmail.com', // list of receivers
+    subject: 'asfs', // Subject line
+    text: 'sagsagasgsa', // plaintext body
   }
-  console.log('Message sent successfully!');
 
-  // if you don't want to use this transport object anymore, uncomment following line
-  //transport.close(); // close the connection pool
-});
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, function(error, response){
+      if(error){
+          console.log(error);
+      }else{
+          console.log("Message sent: " + response.message);
+      }
+
+      // if you don't want to use this transport object anymore, uncomment following line
+      //smtpTransport.close(); // shut down the connection pool, no more messages
+  });
 });
 
 socket.on('disconnect', function () {
