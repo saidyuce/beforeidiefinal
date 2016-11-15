@@ -16,7 +16,7 @@ console.log('New Chat Message ', msg)
 	var server  = email.server.connect({
  		user: "m.onur.cevik", 
   		password: "o147852369o=Onur", 
-   		host: "smtp-mail.outlook.com", 
+   		host: "smtp-mail.hotmail.com", 
   		ssl: true
 	});
 
