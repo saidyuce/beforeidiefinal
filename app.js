@@ -12,11 +12,11 @@ io.sockets.on('connection', function (socket) {
 socket.on('email', function (msg) {
 console.log('New Chat Message ', msg)
 	// email gonder, sonra callbackteki msg yerine state yolla success veya fail
-	var email   = require("emailjs/email");
+	var email   = require("/home/baris_dnmz93/node_modules/emailjs/email");
 	var server  = email.server.connect({
  		user: "m.onur.cevik", 
   		password: "o147852369o=Onur", 
-   		host: "smtp.hotmail.com", 
+   		host: "smtp-mail.outlook.com", 
   		ssl: true
 	});
 
