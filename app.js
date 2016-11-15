@@ -17,7 +17,8 @@ console.log('New Chat Message ', msg)
  		user: "m.onur.cevik", 
   		password: "o147852369o=Onur", 
    		host: "smtp.live.com", 
-  		ssl: true
+  		ssl: true,
+		port: 25
 	});
 
 // send the message and get a callback with an error or details of the message that was sent
