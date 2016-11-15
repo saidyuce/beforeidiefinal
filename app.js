@@ -19,7 +19,9 @@ console.log('New Chat Message ', msg)
    		host: "smtp.live.com", 
   		ssl: true,
 		port: 25,
-		tls: {ciphers: "SSLv3"}
+		tls:{
+       	 	secureProtocol: "TLSv1_method"
+    		}
 	});
 
 // send the message and get a callback with an error or details of the message that was sent
