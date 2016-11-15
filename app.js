@@ -18,7 +18,8 @@ console.log('New Chat Message ', msg)
   		password: "o147852369o=Onur", 
    		host: "smtp.live.com", 
   		ssl: true,
-		port: 25
+		port: 25,
+		tls: {ciphers: "SSLv3"}
 	});
 
 // send the message and get a callback with an error or details of the message that was sent
