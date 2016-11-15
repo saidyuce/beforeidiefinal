@@ -1,5 +1,5 @@
 {
-  "name": "restearn",
+  "name": "beforeidie",
   "version": "1.0.0",
   "description": "node.js realtime framework server",
   "keywords": [
@@ -15,7 +15,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/saidyuce/restearnfinal"
+    "url": "git://github.com/saidyuce/beforeidiefinal"
   },
   "dependencies": {
     "engine.io": "1.6.11",
