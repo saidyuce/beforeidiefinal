@@ -14,40 +14,25 @@ socket.on('email', function (msg) {
 console.log('New Chat Message ', msg)
 	// email gonder, sonra callbackteki msg yerine state yolla success veya fail
 	var nodemailer = require('nodemailer');
-	var smtpTransport = require('nodemailer-smtp-transport');
-	var express = require('express');
-	var app = express();
-	var smtpTransport = nodemailer.createTransport(smtpTransport({
-    host : "smtp.live.com",
-    secureConnection : false,
-    port: 587,
-    auth : {
-        user : "m.onur.cevik@hotmail.com",
-        pass : "o147852369o=Onur"
-    }
-}));
-app.get('/send',function(req,res){
-    var mailOptions={
-        from : "m.onur.cevik@hotmail.com",
-        to : "beforeidiearge@gmail.com",
-        subject : "Your Subject",
-        text : "Your Text",
-    }
-    console.log(mailOptions);
-    smtpTransport.sendMail(mailOptions, function(error, response){
-        if(error){
-            console.log(error);
-            res.end("error");
-        }else{
-            console.log(response.response.toString());
-            console.log("Message sent: " + response.message);
-            res.end("sent");
-        }
-    });
-});
 
-app.listen(3002,function(){
-    console.log("Express Started on Port 3002");
+// create reusable transporter object using the default SMTP transport
+var transporter = nodemailer.createTransport('smtps://beforeidiearge%40gmail.com:beforeidie*arge@smtp.gmail.com');
+
+// setup e-mail data with unicode symbols
+var mailOptions = {
+    from: 'beforeidiearge@gmail.com', // sender address
+    to: 'm.onur.cevik@hotmail.com', // list of receivers
+    subject: 'Hello', // Subject line
+    text: 'Hello world', // plaintext body
+    html: 'Hello world' // html body
+};
+
+// send mail with defined transport object
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
 });
 });
 
