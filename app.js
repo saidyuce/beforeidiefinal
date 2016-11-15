@@ -7,7 +7,7 @@ io.sockets.on('connection', function (socket) {
   var address = socket.handshake.address;
   console.log('New connection from ' + address.address + ':' + address.port);
 
-io.sockets.emit('this', { will: 'be received by everyone'});
+  io.sockets.emit('this', { will: 'be received by everyone'});
 
 socket.on('email', function (msg) {
 console.log('New Chat Message ', msg)
