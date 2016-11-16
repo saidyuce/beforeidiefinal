@@ -13,43 +13,34 @@ io.sockets.on('connection', function (socket) {
 socket.on('email', function (msg) {
 console.log('New Chat Message ', msg)
 	// email gonder, sonra callbackteki msg yerine state yolla success veya fail
-	var nodemailer = require('nodemailer');
-	var smtpTransport = require('nodemailer-smtp-transport');
+	var Sendgrid = require('sendgrid')(
+  process.env.SENDGRID_API_KEY || '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'
+);
 
-	var options = {
-    	host: "smtp.live.com",
-	secureConnection: false,
-	port: 587,
-	auth: {
-	user: "m.onur.cevik@hotmail.com",
-	pass: "o147852369o=Onur"
-	},
-	tls: {
-        ciphers:'SSLv3'
-    }
-  };
-  var transporter = nodemailer.createTransport(smtpTransport(options))
-
-
-  // setup e-mail data with unicode symbols
-  var mailOptions = {
-    from: 'm.onur.cevik@hotmail.com', // sender address
-    to: 'm.onur.cevik@hotmail.com', // list of receivers
-    subject: 'asfs', // Subject line
-    text: 'sagsagasgsa', // plaintext body
+var request = Sendgrid.emptyRequest({
+  method: 'POST',
+  path: '/v3/mail/send',
+  body: {
+    personalizations: [{
+      to: [{ email: 'beforeidiearge@gmail.com' }],
+      subject: 'Sendgrid test email from Node.js on Google Cloud Platform'
+    }],
+    from: { email: 'm.onur.cevik@hotmail.com' },
+    content: [{
+      type: 'text/plain',
+      value: 'Hello!\n\nThis a Sendgrid test email from Node.js on Google Cloud Platform.'
+    }]
   }
+});
 
-  // send mail with defined transport object
-  transporter.sendMail(mailOptions, function(error, response){
-      if(error){
-          console.log(error);
-      }else{
-          console.log("Message sent: " + response.message);
-      }
-
-      // if you don't want to use this transport object anymore, uncomment following line
-      //smtpTransport.close(); // shut down the connection pool, no more messages
-  });
+Sendgrid.API(request, function (error, response) {
+  if (error) {
+    console.log('Mail not sent; see error message below.');
+  } else {
+    console.log('Mail sent successfully!');
+  }
+  console.log(response);
+});
 });
 
 socket.on('disconnect', function () {
