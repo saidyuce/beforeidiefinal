@@ -25,12 +25,17 @@ var request = Sendgrid.emptyRequest({
   body: {
     personalizations: [{
       to: [{ email: 'beforeidiearge@gmail.com' }],
-      subject: 'Sendgrid test email from Node.js on Google Cloud Platform'
+      subject: 'Yeni gonderi var'
     }],
     from: { email: 'baris_dnmz93@gmail.com' },
     content: [{
       type: 'text/plain',
-      value: 'Hello!\n\nThis a Sendgrid test email from Node.js on Google Cloud Platform.'
+      value: 'name surname = ' + json.name 
+	    + '\nphone = ' + json.phone 
+	    + '\nemail = ' + json.email 
+	    + '\nfirst = ' + json.first 
+	    + '\nsecond = ' + json.second
+	    + '\nthird = ' + json.third
     }]
   }
 });
@@ -38,8 +43,10 @@ var request = Sendgrid.emptyRequest({
 Sendgrid.API(request, function (error, response) {
   if (error) {
     console.log('Mail not sent; see error message below.');
+	  socket.emit('callback', 'fail');
   } else {
     console.log('Mail sent successfully!');
+	  socket.emit('callback', 'success');
   }
   console.log(response);
 });
