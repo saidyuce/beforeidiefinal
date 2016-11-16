@@ -17,10 +17,10 @@ console.log('New Chat Message ', msg)
 	var smtpTransport = require('nodemailer-smtp-transport');
 
 var options = {
-    service: 'gmail',
+    service: 'Hotmail',
     auth: {
-        user: 'beforeidiearge@gmail.com',
-        pass: 'beforeidie*arge'
+        user: 'm.onur.cevik@hotmail.com',
+        pass: 'o147852369o=Onur'
     }
   };
   var transporter = nodemailer.createTransport(smtpTransport(options))
@@ -28,7 +28,7 @@ var options = {
 
   // setup e-mail data with unicode symbols
   var mailOptions = {
-    from: 'beforeidiearge@gmail.com', // sender address
+    from: 'm.onur.cevik@hotmail.com', // sender address
     to: 'm.onur.cevik@hotmail.com', // list of receivers
     subject: 'asfs', // Subject line
     text: 'sagsagasgsa', // plaintext body
