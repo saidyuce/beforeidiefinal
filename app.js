@@ -27,7 +27,7 @@ var request = Sendgrid.emptyRequest({
       to: [{ email: 'beforeidiearge@gmail.com' }],
       subject: 'Sendgrid test email from Node.js on Google Cloud Platform'
     }],
-    from: { email: 'm.onur.cevik@hotmail.com' },
+    from: { email: 'baris_dnmz93@gmail.com' },
     content: [{
       type: 'text/plain',
       value: 'Hello!\n\nThis a Sendgrid test email from Node.js on Google Cloud Platform.'
