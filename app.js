@@ -11,10 +11,12 @@ io.sockets.on('connection', function (socket) {
   io.sockets.emit('this', { will: 'be received by everyone'});
 
 socket.on('email', function (msg) {
+	var json = JSON.parse(msg);
+	var api_key = json.api_key;
 console.log('New Chat Message ', msg)
 	// email gonder, sonra callbackteki msg yerine state yolla success veya fail
 	var Sendgrid = require('sendgrid')(
-  process.env.SENDGRID_API_KEY || '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'
+  process.env.SENDGRID_API_KEY || api_key
 );
 
 var request = Sendgrid.emptyRequest({
