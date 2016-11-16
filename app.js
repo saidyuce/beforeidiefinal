@@ -16,12 +16,16 @@ console.log('New Chat Message ', msg)
 	var nodemailer = require('nodemailer');
 	var smtpTransport = require('nodemailer-smtp-transport');
 
-var options = {
-    service: 'Hotmail',
-    auth: {
-        user: 'm.onur.cevik@hotmail.com',
-        pass: 'o147852369o=Onur'
-    }
+	var options = {
+    	host: "smtp.gmail.com",
+	secureConnection: false,
+	port: 587,
+	requiresAuth: true,
+	domains: ["gmail.com", "googlemail.com"],
+	auth: {
+	user: "beforeidiearge@gmail.com",
+	pass: "beforeidie*arge"
+	}
   };
   var transporter = nodemailer.createTransport(smtpTransport(options))
 
